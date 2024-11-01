@@ -3,21 +3,21 @@ import { Request, Response } from 'express';
 
 export const sendMail = async (req: Request, res: Response): Promise<any> => {
     try {
-        console.log(req.body);
         const name = req.body.name;
         const email = req.body.email;
         const message = req.body.message;
-        console.log(message);
+
         const mail = {
             from: process.env.MAIL_USER,
             to: process.env.MAIL_USER,
             subject: 'New Message from Statev Mail Server',
-            text: `From : ${name} \n email : ${email} \n message : ${message}`,
             html:  `<b>From :</b> ${name} &lt;${email}&gt;
                     <b>Email :</b> ${email}
                     <b>Message :</b>
                     <div>${message}</div>`
+            //text: `From : ${name} \n email : ${email} \n message : ${message}`
         }
+
         const transport = {
             host: "smtp.titan.email",
             port: 465,
@@ -31,6 +31,7 @@ export const sendMail = async (req: Request, res: Response): Promise<any> => {
                 pass: process.env.MAIL_PWD
             }
         }
+
         const transporter = nodemailer.createTransport(transport);
         
         transporter.sendMail(mail, (err, data) => {
@@ -40,6 +41,7 @@ export const sendMail = async (req: Request, res: Response): Promise<any> => {
                 res.status(201).json({msg: 'success'});
             }
         });
+
         transporter.verify((error, success) => {
             if (error) {
                 console.log(error);
@@ -47,6 +49,7 @@ export const sendMail = async (req: Request, res: Response): Promise<any> => {
                 console.log('Server is ready to take messages');
             }
         });
+
     } catch (err) {
         return res.status(500).json({err});
     }

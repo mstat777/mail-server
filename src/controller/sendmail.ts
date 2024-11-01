@@ -3,9 +3,11 @@ import { Request, Response } from 'express';
 
 export const sendMail = async (req: Request, res: Response): Promise<any> => {
     try {
-        const name = req.body.userName;
-        const email = req.body.userEmail;
-        const message = req.body.userMessage;
+        console.log(req.body);
+        const name = req.body.name;
+        const email = req.body.email;
+        const message = req.body.message;
+        console.log(message);
         const mail = {
             from: process.env.MAIL_USER,
             to: process.env.MAIL_USER,

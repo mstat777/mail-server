@@ -7,7 +7,7 @@ export const validationRules: any = (method: string) => {
             return [
                 body('name')
                     .exists()
-                    .matches(/^[a-zàâçéèêëîïôûùüÿñæœ .'-]*$/i),
+                    .matches(/^[a-zа-яàâçéèêëîïôûùüÿñæœ .'-]*$/i),
                 body('email')
                     .exists()
                     .isEmail()

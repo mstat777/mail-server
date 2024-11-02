@@ -11,11 +11,11 @@ export const sendMail = async (req: Request, res: Response): Promise<any> => {
             from: process.env.MAIL_USER,
             to: process.env.MAIL_USER,
             subject: 'New Message from Statev Mail Server',
-            html:  `<b>From :</b> ${name} &lt;${email}&gt;
-                    <b>Email :</b> ${email}
-                    <b>Message :</b>
-                    <div>${message}</div>`
-            //text: `From : ${name} \n email : ${email} \n message : ${message}`
+            /*html:  `<b>From :</b> ${name} &lt;${email}&gt;<br/>
+                    <b>Email :</b> ${email}<br/>
+                    <b>Message :</b><br/>
+                    <div>${message}</div>`*/
+            text: `From : ${name} \n email : ${email} \n message : ${message}`
         }
 
         const transport = {

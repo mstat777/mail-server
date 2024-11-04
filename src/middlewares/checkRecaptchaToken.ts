@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import axios from 'axios';
 
-export const checkRecaptchaToken = async (req: Request, res: Response, next: NextFunction) => {
+export const checkRecaptchaToken: any = async (req: Request, res: Response, next: NextFunction) => {
     const { token } = req.body;
 
     try {
@@ -16,7 +16,6 @@ export const checkRecaptchaToken = async (req: Request, res: Response, next: Nex
             }
         );
         
-        console.log(result.data.success);
         if (!result.data.success) {
             return res.status(403).send("Robot 🤖!!!");
         } else {

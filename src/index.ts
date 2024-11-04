@@ -7,7 +7,18 @@ dotenv.config();
 const app: Express = express();
 const PORT = process.env.LOCAL_PORT;
 
-app.use(cors())
+var whitelist = ['https://dimitarstatev.com', 'http://127.0.0.1:3000']
+var corsOptions = {
+  origin: function (origin: any, callback: any) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+app.use(cors(corsOptions))
     .use(express.urlencoded({ extended: true }))
     .use(express.json())
     .use("/api/v1", router);

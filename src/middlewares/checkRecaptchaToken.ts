@@ -6,13 +6,19 @@ export const checkRecaptchaToken = async (req: Request, res: Response, next: Nex
 
     try {
         const result = await axios.post(
-            `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.GOOGLE_SK}&response=${token}`
+            `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.GOOGLE_SK}&response=${token}`,
+            {
+                headers: {
+                    'Access-Control-Allow-Origin': 'https://dimitarstatev.com',
+                    'Access-Control-Allow-Methods': 'POST',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+                }
+            }
         );
 
         if (!result.data.success) {
-            res.send("Robot 🤖!!!");
+            res.status(403).send("Robot 🤖!!!");
         } else {
-            res.send("Human 👨 👩");
             next();
         }
     } catch (error) {

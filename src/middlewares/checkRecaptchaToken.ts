@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export const checkRecaptchaToken: any = async (req: Request, res: Response, next: NextFunction) => {
     const { captcha } = req.body;
+    console.log(captcha);
 
     if (!captcha) {
         return res.status(400).json({msg: 'Please complete the CAPTCHA'});

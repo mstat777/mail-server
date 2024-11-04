@@ -15,7 +15,8 @@ export const checkRecaptchaToken = async (req: Request, res: Response, next: Nex
                 }
             }
         );
-
+        
+        console.log(result.data.success);
         if (!result.data.success) {
             return res.status(403).send("Robot 🤖!!!");
         } else {

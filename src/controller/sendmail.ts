@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 
 export const sendMail = async (req: Request, res: Response): Promise<any> => {
     try {
+        console.log("sandMail called");
         const name = req.body.name;
         const email = req.body.email;
         const message = req.body.message;

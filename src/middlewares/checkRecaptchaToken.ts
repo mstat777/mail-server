@@ -17,12 +17,14 @@ export const checkRecaptchaToken: any = async (req: Request, res: Response, next
         );
         
         if (!result.data.success) {
-            return res.status(403).send("Robot 🤖!!!");
+            console.log("ReCAPTCHA token is NOT valid!!!");
+            return res.status(403).json({msg: "Robot 🤖!!!"});
         } else {
+            console.log("ReCAPTCHA token is valid.");
             next();
         }
     } catch (error) {
         console.error(error);
-        res.status(500).send("Error verifying reCAPTCHA");
+        res.status(500).json({msg: "Error verifying reCAPTCHA"});
     }
 }

@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app: Express = express();
-const PORT = process.env.LOCAL_PORT;
+const PORT = process.env.LOCAL_PORT || 9000;
 
 var whitelist = ['https://dimitarstatev.com', 'http://127.0.0.1:3000'];
 var corsOptions = function (req: any, callback: any) {

@@ -21,7 +21,7 @@ export const sendMail = async (req: Request, res: Response): Promise<any> => {
         const transport = {
             host: "smtp.titan.email",
             port: 465,
-            secure: false, 
+            secure: true, 
             tls: {
                 rejectUnauthorized: false,
             },
